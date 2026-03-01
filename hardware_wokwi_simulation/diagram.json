@@ -1,0 +1,49 @@
+{
+  "version": 1,
+  "author": "Smart Dustbin Final",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": 40, "left": 50, "attrs": {} },
+
+    { "type": "wokwi-hc-sr04", "id": "frontSensor", "top": -90, "left": -160, "attrs": {} },
+    { "type": "wokwi-hc-sr04", "id": "wetSensor", "top": -90, "left": 170, "attrs": {} },
+    { "type": "wokwi-hc-sr04", "id": "drySensor", "top": -90, "left": 350, "attrs": {} },
+
+    { "type": "wokwi-servo", "id": "servo1", "top": -20, "left": 200, "attrs": {} },
+
+    { "type": "wokwi-potentiometer", "id": "moisture", "top": 220, "left": 220, "attrs": {} },
+
+    { "type": "board-ssd1306", "id": "oled", "top": 80, "left": 270, "attrs": { "i2cAddress": "0x3c" } }
+  ],
+
+  "connections": [
+
+    ["esp:5V", "frontSensor:VCC", "red", ["h0"]],
+    ["esp:GND.1", "frontSensor:GND", "black", ["h0"]],
+    ["esp:12", "frontSensor:TRIG", "green", ["h0"]],
+    ["esp:13", "frontSensor:ECHO", "green", ["h0"]],
+
+    ["esp:5V", "wetSensor:VCC", "red", ["h0"]],
+    ["esp:GND.1", "wetSensor:GND", "black", ["h0"]],
+    ["esp:26", "wetSensor:TRIG", "green", ["h0"]],
+    ["esp:27", "wetSensor:ECHO", "green", ["h0"]],
+
+    ["esp:5V", "drySensor:VCC", "red", ["h0"]],
+    ["esp:GND.1", "drySensor:GND", "black", ["h0"]],
+    ["esp:32", "drySensor:TRIG", "green", ["h0"]],
+    ["esp:33", "drySensor:ECHO", "green", ["h0"]],
+
+    ["servo1:V+", "esp:5V", "red", ["h0"]],
+    ["servo1:GND", "esp:GND.1", "black", ["h0"]],
+    ["servo1:PWM", "esp:15", "green", ["h0"]],
+
+    ["moisture:VCC", "esp:5V", "red", ["h0"]],
+    ["moisture:GND", "esp:GND.1", "black", ["h0"]],
+    ["moisture:SIG", "esp:34", "green", ["h0"]],
+
+    ["oled:VCC", "esp:3V3", "red", ["h0"]],
+    ["oled:GND", "esp:GND.1", "black", ["h0"]],
+    ["oled:SDA", "esp:21", "green", ["h0"]],
+    ["oled:SCL", "esp:22", "green", ["h0"]]
+  ]
+}
